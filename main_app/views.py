@@ -15,6 +15,18 @@ from .models import Movie, Show
 def home(request):
   return render(request, 'home.html')
 
+def about(request):
+   return render(request, 'about.html')
+
+def shows_index(request):
+   return render(request, 'all_tv_shows.html')
+
+def movies_index(request):
+   return render(request, 'all_movies.html')
+
+def my_profile(request):
+   return render(request, 'my_profile.html')
+
 
 class MovieCreate(CreateView):
     model = Movie

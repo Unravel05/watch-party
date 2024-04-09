@@ -24,6 +24,14 @@ def shows_index(request):
 def movies_index(request):
    return render(request, 'all_movies.html')
 
+def party_index(request):
+   movies = Movie.objects.all()
+   shows = Show.objects.all()
+   return render(request, 'party/index.html', {
+      'movies': movies,
+      'shows': shows
+   })
+
 def my_profile(request):
    return render(request, 'my_profile.html')
 

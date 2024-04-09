@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Movies</h1>
+
+{% for movie in movies %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ movie.title }}</span>
+        <p>Genre: {{ movie.genre }}</p>
+        <p>Description: {{ movie.description|linebreaks }}</p>
+        <p>Poster: {{ movie.poster }}</p>
+        <p>Progress: {{ movie.progress }}</p>
+
+      </div>
+    </div>
+  </a>
+{% endfor %}
+
+<h1>Shows</h1>
+
+{% for show in shows %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ show.title }}</span>
+        <p>Genre: {{ show.genre }}</p>
+        <p>Description: {{ show.description|linebreaks }}</p>
+        <p>Poster: {{ show.poster }}</p>
+        <p>Progress: {{ show.progress }}</p>
+
+      </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

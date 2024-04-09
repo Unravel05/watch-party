@@ -7,13 +7,32 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+import requests
+from django.http import HttpResponse
 from .models import Movie, Show
 
-
+TMDB_API_KEY = '52c430a98c74ec9e45c65e972962aa7b'
+TMDB_API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmM0MzBhOThjNzRlYzllNDVjNjVlOTcyOTYyYWE3YiIsInN1YiI6IjY2MGVmYmY0YTg4NTg3MDE3Y2VhMjVlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eNL5Z05d61tQZ1TXUoccaKXxrm3_Nu5IIrme8q4So8Y'
+headers = {
+    "accept": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmM0MzBhOThjNzRlYzllNDVjNjVlOTcyOTYyYWE3YiIsInN1YiI6IjY2MGVmYmY0YTg4NTg3MDE3Y2VhMjVlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eNL5Z05d61tQZ1TXUoccaKXxrm3_Nu5IIrme8q4So8Y"
+}
 
 # Create your views here.
 def home(request):
-  return render(request, 'home.html')
+      query = requests.GET.get('q')
+      print(query)
+
+      if query:
+        data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
+        print(data.json())
+      else:
+        return HttpResponse('please enter a search query')
+
+      return render(request, 'main_app/home.html', {
+        "data": data.json(),
+        "type": request.GET.get("type")
+      })
 
 def about(request):
    return render(request, 'about.html')

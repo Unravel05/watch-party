@@ -23,6 +23,10 @@
                 </div>
                 <div class="card-action">
                     <a href="/{{ type }}/{{ m.id }}/">View Details</a>
+                    <form action="/{{ type }}/{{ m.id }}/save" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Save</button>
+                    </form>
                 </div>
             </div>
         </div>

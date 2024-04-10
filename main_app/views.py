@@ -30,7 +30,7 @@ def search(request):
     if query:
 
         data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
-        print(data.json())
+        print(f'search {data.json()}')
     else:
         return render(request, 'all_media.html', {
            'title': 'Available Media'
@@ -41,24 +41,6 @@ def search(request):
         "type": request.GET.get("type"),
         "title": f'Results for {query}'
     })
-
-      # query = request.GET.get('q')
-      # print(query)
-
-      # if query:
-      #   data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
-      #   print(data.json())
-      # else:
-      # #   all movies landing page
-      #   return render(request, 'all_movies.html', {
-      #      "title": 'Movies'
-      #   })
-
-      # return render(request, 'all_movies.html', {
-      #   "data": data.json(),
-      #   "type": request.GET.get("type"),
-      #   "title": f'Results for {query}'
-      # })
 
 def view_trendings_results(request):
     type = request.GET.get("media_type")
@@ -87,6 +69,41 @@ def party_index(request):
 def my_profile(request):
    return render(request, 'my_profile.html')
 
+def save_tv_show(request, tv_id):
+   movies = Movie.objects.all()
+   shows = Show.objects.all()
+
+   data = requests.get(f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={TMDB_API_KEY}&language=en-US")
+   show = data.json()
+   print(f'this is {data.json()['title']}')
+   print('tv save!')
+   m = Show.objects.create(title=show['title'], user=request.user)
+   m.save()
+
+   return render(request, 'party/index.html', {
+      'movies': movies,
+      'shows': shows,
+      'data': data.json(),
+      'type': 'tv'
+   })
+
+def save_movie(request, movie_id):
+   movies = Movie.objects.all()
+   shows = Show.objects.all()
+
+   data = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US")
+   show = data.json()
+   print(f'this is {data.json()['title']}')
+   print('movie save!')
+   m = Movie.objects.create(title=show['title'], user=request.user)
+   m.save()
+
+   return render(request, 'party/index.html', {
+      'movies': movies,
+      'shows': shows,
+      'data': data.json(),
+      'type': 'movie'
+   })
 
 class MovieCreate(CreateView):
     model = Movie

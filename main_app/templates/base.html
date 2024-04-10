@@ -15,19 +15,18 @@
         <nav>
             <div class=“nav-wrapper”>
                 <ul>
-                    <li><a href="" class="left brand-logo">&nbsp;&nbsp;Home</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Home</a></li>
                 </ul>
                 <ul class="right">
                   <li><a href="{% url 'about' %}">About</a></li>
-                  <li><a href="{% url 'all_tv_shows' %}">All TV Shows</a></li>
-                  <li><a href="{% url 'all_movies' %}">All Movies</a></li>
+                  <li><a href="{% url 'all_media' %}">All Media</a></li>
                   {% if user.is_authenticated %}
-                  <li>
-                        <li><a href="{% url 'party' %}">My Watch Party</a></li>
-                      <li><a href="{% url 'my_profile' %}">&nbsp;&nbsp;Profile</a></li>
-                      <form action="{% url 'logout' %}" method="POST">
-                          {% csrf_token %}
-                          <button type="submit" class="btn">Logout</button>
+                    <li><a href="{% url 'party' %}">My Watch Party</a></li>
+                    <li><a href="{% url 'my_profile' %}">&nbsp;&nbsp;Profile</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Logout</button>
                         </form>
                     </li>
                   {% else %}

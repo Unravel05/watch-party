@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+<p>Carrousel??</p>
+
+<div class="row">
+    {% for m in data.results %}
+        <div class="col s4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">
+                        {% if not m.name %}
+                            {{ m.title }}
+                        {% else %}
+                            {{ m.name }}
+                        {% endif %}
+                    </span>
+                    <div class="card-image">
+                        <img src="https://image.tmdb.org/t/p/w200{{ m.poster_path }}" alt="...">
+                    </div>
+                    <p>{{ m.overview }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="/{{ type }}/{{ m.id }}/">View Details</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+  </div>
+
+  <h2>Trending</h2>
+  <div class="input-field">
+      <select class="browser-default" id="media_type">
+      <option selected>All Trending Media Types</option>
+      <option value="movie">All Trending Movies</option>
+      <option value="tv">All Trending TV Shows</option>
+      <option value="person">All Trending Persons</option>
+      </select>
+  </div>
+  <div id="trendings" class="row">
+
+  </div>
+
+  <script>
+      fetchTrendingResults("all", "week")
+
+      var mediaType = document.getElementById("media_type")
+      mediaType.addEventListener("change", function(event) {
+          fetchTrendingResults(mediaType.options[mediaType.selectedIndex].value, "day")
+      })
+
+      function fetchTrendingResults(media_type, time_window) {
+          var trendingDiv = document.getElementById("trendings")
+          trendingDiv.innerHTML = ""
+
+          fetch(`/api/trendings?media_type=${media_type}&time_window=${time_window}`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json"
+              }
+          })
+          .then(res => res.json())
+          .then(data => {
+              for (let i=0; i<data.results.length; i++) {
+                  var mainDiv = document.createElement("div");
+                  mainDiv.setAttribute("class", "card");
+                  mainDiv.setAttribute("style", "width: 18rem;");
+                  var img = document.createElement("img");
+                  img.setAttribute("src", "https://image.tmdb.org/t/p/w200" + data.results[i].poster_path);
+                  img.setAttribute("class", "card-image");
+                  img.setAttribute("alt", "...");
+                  var body = document.createElement("div");
+                  body.setAttribute("class", "card-content");
+                  var title = document.createElement("h5");
+                  title.setAttribute("class", "card-title");
+                  if (data.results[i].name) {
+                      title.innerHTML = data.results[i].name;
+                  } else {
+                      title.innerHTML = data.results[i].title;
+                  }
+                  var text = document.createElement("p");
+                  text.setAttribute("class", "card-content");
+                  text.innerHTML = data.results[i].overview;
+                  var link = document.createElement("a");
+                  link.setAttribute("href", "/" + data.results[i].media_type + "/" + data.results[i].id + "/");
+                  link.setAttribute("class", "btn");
+                  link.innerHTML = "View Details";
+                  body.appendChild(title);
+                  body.appendChild(text);
+                  body.appendChild(link);
+                  mainDiv.appendChild(img);
+                  mainDiv.appendChild(body);
+                  document.getElementById("trendings").appendChild(mainDiv);
+              }
+          })
+      }
+
+  </script>
+
+{% endblock %}

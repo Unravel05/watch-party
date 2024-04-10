@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import requests
 from django.http import HttpResponse
+from django.http.response import JsonResponse
 from .models import Movie, Show
 
 TMDB_API_KEY = '52c430a98c74ec9e45c65e972962aa7b'
@@ -20,25 +21,57 @@ headers = {
 
 # Create your views here.
 def home(request):
-      query = requests.GET.get('q')
-      print(query)
+   return render(request, 'home.html')
 
-      if query:
+def search(request):
+    query = request.GET.get('q')
+    print(query)
+
+    if query:
+
         data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
         print(data.json())
-      else:
-        return HttpResponse('please enter a search query')
+    else:
+        return render(request, 'all_media.html', {
+           'title': 'Available Media'
+        })
 
-      return render(request, 'main_app/home.html', {
+    return render(request, 'all_media.html', {
         "data": data.json(),
-        "type": request.GET.get("type")
-      })
+        "type": request.GET.get("type"),
+        "title": f'Results for {query}'
+    })
+
+      # query = request.GET.get('q')
+      # print(query)
+
+      # if query:
+      #   data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
+      #   print(data.json())
+      # else:
+      # #   all movies landing page
+      #   return render(request, 'all_movies.html', {
+      #      "title": 'Movies'
+      #   })
+
+      # return render(request, 'all_movies.html', {
+      #   "data": data.json(),
+      #   "type": request.GET.get("type"),
+      #   "title": f'Results for {query}'
+      # })
+
+def view_trendings_results(request):
+    type = request.GET.get("media_type")
+    time_window = request.GET.get("time_window")
+
+    trendings = requests.get(f"https://api.themoviedb.org/3/trending/{type}/{time_window}?api_key={TMDB_API_KEY}&language=en-US")
+    return JsonResponse(trendings.json())
 
 def about(request):
    return render(request, 'about.html')
 
-def shows_index(request):
-   return render(request, 'all_tv_shows.html')
+# def shows_index(request):
+#    return render(request, 'all_tv_shows.html')
 
 def movies_index(request):
    return render(request, 'all_movies.html')

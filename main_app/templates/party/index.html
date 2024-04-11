@@ -5,14 +5,15 @@
 
 {% for movie in movies %}
     <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ movie.title }}</span>
-        <p>Genre: {{ movie.genre }}</p>
-        <p>Description: {{ movie.description|linebreaks }}</p>
-        <p>Poster: {{ movie.poster }}</p>
-        <p>Progress: {{ movie.progress }}</p>
-
-      </div>
+      <a href="{% url 'movie_detail' movie.id %}">
+        <div class="card-content">
+          <span class="card-title">{{ movie.title }}</span>
+          <p>Genre: {{ movie.genre }}</p>
+          <p>Description: {{ movie.description|linebreaks }}</p>
+          <p>Poster: {{ movie.poster }}</p>
+          <p>Progress: {{ movie.progress }}</p>
+        </div>
+      </a>
     </div>
   </a>
 {% endfor %}
@@ -21,15 +22,16 @@
 
 {% for show in shows %}
     <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ show.title }}</span>
-        <p>Genre: {{ show.genre }}</p>
-        <p>Seasons: {{ show.season }}</p>
-        <p>Description: {{ show.description|linebreaks }}</p>
-        <p>Poster: {{ show.poster }}</p>
-        <p>Progress: {{ show.progress }}</p>
-
-      </div>
+      <a href="{% url 'show_detail' show.id %}">
+        <div class="card-content">
+          <span class="card-title">{{ show.title }}</span>
+          <p>Genre: {{ show.genre }}</p>
+          <p>Seasons: {{ show.season }}</p>
+          <p>Description: {{ show.description|linebreaks }}</p>
+          <p>Poster: {{ show.poster }}</p>
+          <p>Progress: {{ show.progress }}</p>
+        </div>
+      </a>
     </div>
   </a>
 {% endfor %}

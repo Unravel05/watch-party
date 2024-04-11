@@ -11,4 +11,8 @@ urlpatterns = [
     path('media/party', views.party_index, name='party'),
     path('movie/<int:movie_id>/save', views.save_movie, name='save_movie'),
     path('tv/<int:tv_id>/save', views.save_tv_show, name='save_tv_show'),
+    path('movies/<int:movie_id>', views.movie_detail, name='movie_detail'),
+    path('shows/<int:show_id>', views.show_detail, name='show_detail'),
+    path('movies/<int:pk>/delete/', views.MovieDelete.as_view(), name='movies_delete'),
+    path('shows/<int:pk>/delete/', views.ShowDelete.as_view(), name='shows_delete'),
 ]

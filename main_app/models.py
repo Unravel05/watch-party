@@ -4,11 +4,11 @@ from datetime import date
 from django.urls import reverse
 
 RATINGS = (
-    ('one', '1'),
-    ('two', '2'),
-    ('three', '3'),
-    ('four', '4'),
-    ('five', '5')
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5')
 )
 
 # Create your models here.
@@ -42,7 +42,7 @@ class MovieReview(models.Model):
         max_length=1,
         choices=RATINGS,
         default=RATINGS[0][0]
-    ),
+    )
     review = models.CharField(default='')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
@@ -55,7 +55,7 @@ class ShowReview(models.Model):
         max_length=1,
         choices=RATINGS,
         default=RATINGS[0][0]
-    ),
+    )
     review = models.CharField(default='')
     show = models.ForeignKey(Show, on_delete=models.CASCADE)
 

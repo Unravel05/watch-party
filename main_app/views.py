@@ -93,6 +93,18 @@ def save_tv_show(request, tv_id):
       'type': 'tv'
    })
 
+def show_detail(request, show_id):
+   show = Show.objects.get(id=show_id)
+
+   return render(request, 'shows/detail.html', {
+      'title': f'{show}',
+      'show': show,
+   })
+
+class ShowDelete(LoginRequiredMixin, DeleteView):
+  model = Show
+  success_url = '/media/party'
+
 def save_movie(request, movie_id):
    movies = Movie.objects.all()
    shows = Show.objects.all()
@@ -116,6 +128,18 @@ def save_movie(request, movie_id):
       'data': data.json(),
       'type': 'movie'
    })
+
+def movie_detail(request, movie_id):
+   movie = Movie.objects.get(id=movie_id)
+
+   return render(request, 'movies/detail.html', {
+      'title': f'{movie}',
+      'movie': movie,
+   })
+
+class MovieDelete(LoginRequiredMixin, DeleteView):
+  model = Movie
+  success_url = '/media/party'
 
 class MovieCreate(CreateView):
     model = Movie

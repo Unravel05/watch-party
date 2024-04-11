@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<div class="col s4">
+    <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <span class="card-title">
+                    {{ movie.title }}
+            </span>
+            <div class="card-image">
+                <img src="https://image.tmdb.org/t/p/w200{{ movie.poster }}" alt="...">
+            </div>
+            <p>Genre: {{ movie.genre }}</p>
+            <p>Overview: {{ movie.description }}</p>
+            <p>Your Progress: {{ movie.progress }}</p>
+        </div>
+        <div class="card_action">
+            <a href="{% url 'movies_delete' movie.id %}" class="btn">Delete</a>            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

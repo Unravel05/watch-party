@@ -37,7 +37,7 @@ class Show(models.Model):
         return self.title
     
 class MovieReview(models.Model):
-    date = models.DateField()
+    date = models.DateField(default=date.today())
     rating = models.CharField(
         max_length=1,
         choices=RATINGS,
@@ -50,7 +50,7 @@ class MovieReview(models.Model):
         return f"{self.id}"
     
 class ShowReview(models.Model):
-    date = models.DateField()
+    date = models.DateField(default=date.today())
     rating = models.CharField(
         max_length=1,
         choices=RATINGS,

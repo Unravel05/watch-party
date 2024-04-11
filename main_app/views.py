@@ -96,10 +96,11 @@ def save_tv_show(request, tv_id):
 
 def show_detail(request, show_id):
    show = Show.objects.get(id=show_id)
-
+   review_form = ShowReviewForm()
    return render(request, 'shows/detail.html', {
       'title': f'{show}',
       'show': show,
+      'review_form': review_form
    })
 
 class ShowDelete(LoginRequiredMixin, DeleteView):
@@ -150,6 +151,14 @@ def add_movie_review(request, movie_id):
       new_review.movie_id = movie_id
       new_review.save()
    return redirect('movie_detail', movie_id=movie_id)
+
+def add_show_review(request, show_id):
+   form = ShowReviewForm(request.POST)
+   if form.is_valid():
+      new_review = form.save(commit=False)
+      new_review.show_id = show_id
+      new_review.save()
+   return redirect('show_detail', show_id=show_id)
 
 class MovieCreate(CreateView):
     model = Movie

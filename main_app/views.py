@@ -75,9 +75,15 @@ def save_tv_show(request, tv_id):
 
    data = requests.get(f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={TMDB_API_KEY}&language=en-US")
    show = data.json()
-   print(f'this is {data.json()['title']}')
-   print('tv save!')
-   m = Show.objects.create(title=show['title'], user=request.user)
+   m = Show.objects.create(
+      title=show['name'], 
+      genre=show['genres'][0]['name'], 
+      season=show['number_of_seasons'],
+      description=show['overview'],
+      poster=show['poster_path'],
+      progress='Not Started',
+      user=request.user
+   )
    m.save()
 
    return render(request, 'party/index.html', {
@@ -92,10 +98,16 @@ def save_movie(request, movie_id):
    shows = Show.objects.all()
 
    data = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US")
-   show = data.json()
+   movie = data.json()
    print(f'this is {data.json()['title']}')
-   print('movie save!')
-   m = Movie.objects.create(title=show['title'], user=request.user)
+   m = Movie.objects.create(
+      title=movie['title'], 
+      genre=movie['genres'][0]['name'], 
+      description=movie['overview'], 
+      poster=movie['poster_path'],
+      progress='Not Started',
+      user=request.user
+   )
    m.save()
 
    return render(request, 'party/index.html', {

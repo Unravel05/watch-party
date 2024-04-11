@@ -16,11 +16,24 @@
             <p>Seasons: {{ show.season }}</p>
             <p>Overview: {{ show.description }}</p>
             <p>Your Progress: {{ show.progress }}</p>
+                {% for r in show.showreview_set.all %}
+                    <p>Reviews: {{ r.review }}</p>
+                {% endfor %}
         </div>
         <div class="card_action">
             <a href="{% url 'shows_delete' show.id %}" class="btn">Delete</a>            
+            <form action="{% url 'add_show_review' show.id %}" method="POST">
+                {% csrf_token %}
+                {{ review_form.as_p }}
+                <input type="submit" class="btn" value="Add Review">
+            </form>            
         </div>
     </div>
 </div>
+
+<script>
+    const selectEl = document.getElementById('id_rating');
+    M.FormSelect.init(selectEl);
+  </script>
 
 {% endblock %}

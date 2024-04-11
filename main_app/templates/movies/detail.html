@@ -16,8 +16,10 @@
             <p>Overview: {{ movie.description }}</p>
             <p>Your Progress: {{ movie.progress }}</p>
                 {% for r in movie.moviereview_set.all %}
-                    <p>Reviews: {{ r.review }}</p>
+                    <p>Reviews: {{ r.date }} | {{ r.review }}</p>
+                    <p>Rating: {{ r.rating }}</p>
                 {% endfor %}
+            
         </div>
         <div class="card_action">
             <a href="{% url 'movies_delete' movie.id %}" class="btn">Delete</a>
@@ -30,15 +32,7 @@
     </div>
 </div>
 
-<script>
-    const dateEl = document.getElementById('id_date');
-    M.Datepicker.init(dateEl, {
-      format: 'yyyy-mm-dd',
-      defaultDate: new Date(),
-      setDefaultDate: true,
-      autoClose: true
-    });
-  
+<script>  
     const selectEl = document.getElementById('id_rating');
     M.FormSelect.init(selectEl);
   </script>

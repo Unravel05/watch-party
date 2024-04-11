@@ -23,6 +23,9 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('movie_detail', kwargs={'movie_id': self.id})
 
 class Show(models.Model):
     title = models.CharField(default='')
@@ -36,6 +39,9 @@ class Show(models.Model):
     def __str__(self):
         return self.title
     
+    def get_absolute_url(self):
+        return reverse('show_detail', kwargs={'show_id': self.id})
+
 class MovieReview(models.Model):
     date = models.DateField(default=date.today())
     rating = models.CharField(

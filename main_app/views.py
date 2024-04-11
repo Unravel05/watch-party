@@ -103,6 +103,15 @@ def show_detail(request, show_id):
       'review_form': review_form
    })
 
+class MovieUpdate(UpdateView):
+  model = Movie
+  fields = ['progress']
+
+class ShowUpdate(UpdateView):
+  model = Show
+  fields = ['progress']
+
+
 class ShowDelete(LoginRequiredMixin, DeleteView):
   model = Show
   success_url = '/media/party'

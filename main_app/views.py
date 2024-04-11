@@ -11,6 +11,7 @@ import requests
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 from .models import Movie, Show
+from .forms import MovieReviewForm, ShowReviewForm
 
 TMDB_API_KEY = '52c430a98c74ec9e45c65e972962aa7b'
 TMDB_API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmM0MzBhOThjNzRlYzllNDVjNjVlOTcyOTYyYWE3YiIsInN1YiI6IjY2MGVmYmY0YTg4NTg3MDE3Y2VhMjVlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eNL5Z05d61tQZ1TXUoccaKXxrm3_Nu5IIrme8q4So8Y'
@@ -131,15 +132,24 @@ def save_movie(request, movie_id):
 
 def movie_detail(request, movie_id):
    movie = Movie.objects.get(id=movie_id)
-
+   review_form = MovieReviewForm()
    return render(request, 'movies/detail.html', {
       'title': f'{movie}',
       'movie': movie,
+      'review_form': review_form
    })
 
 class MovieDelete(LoginRequiredMixin, DeleteView):
   model = Movie
   success_url = '/media/party'
+
+def add_movie_review(request, movie_id):
+   form = MovieReviewForm(request.POST)
+   if form.is_valid():
+      new_review = form.save(commit=False)
+      new_review.movie_id = movie_id
+      new_review.save()
+   return redirect('movie_detail', movie_id=movie_id)
 
 class MovieCreate(CreateView):
     model = Movie

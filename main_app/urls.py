@@ -15,4 +15,5 @@ urlpatterns = [
     path('shows/<int:show_id>', views.show_detail, name='show_detail'),
     path('movies/<int:pk>/delete/', views.MovieDelete.as_view(), name='movies_delete'),
     path('shows/<int:pk>/delete/', views.ShowDelete.as_view(), name='shows_delete'),
+    path('movies/<int:movie_id>/add_movie_review/', views.add_movie_review, name='add_movie_review'),
 ]

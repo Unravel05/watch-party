@@ -4,36 +4,39 @@
 <h1>Movies</h1>
 
 {% for movie in movies %}
-    <div class="card">
+  
+<div class="col s4">
+  <div class="card blue-grey darken-1">
+    <div class="card-content white-text">
       <a href="{% url 'movie_detail' movie.id %}">
-        <div class="card-content">
           <span class="card-title">{{ movie.title }}</span>
-          <p>Genre: {{ movie.genre }}</p>
-          <p>Description: {{ movie.description|linebreaks }}</p>
-          <p>Poster: {{ movie.poster }}</p>
-          <p>Progress: {{ movie.progress }}</p>
-        </div>
+          <div class="card-image" style="width: 18rem;">
+            <img src="https://image.tmdb.org/t/p/w200{{ movie.poster }}">
+          </div>
       </a>
     </div>
-  </a>
+  </div>
+</div>
+
 {% endfor %}
 
 <h1>Shows</h1>
 
 {% for show in shows %}
-    <div class="card">
-      <a href="{% url 'show_detail' show.id %}">
-        <div class="card-content">
-          <span class="card-title">{{ show.title }}</span>
-          <p>Genre: {{ show.genre }}</p>
-          <p>Seasons: {{ show.season }}</p>
-          <p>Description: {{ show.description|linebreaks }}</p>
-          <p>Poster: {{ show.poster }}</p>
-          <p>Progress: {{ show.progress }}</p>
-        </div>
-      </a>
+
+  <div class="col s4">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <a href="{% url 'show_detail' show.id %}">
+            <span class="card-title">{{ show.title }}</span>
+            <div class="card-image" style="width: 18rem;">
+              <img src="https://image.tmdb.org/t/p/w200{{ show.poster }}">
+            </div>
+        </a>
+      </div>
     </div>
-  </a>
+  </div>
+  
 {% endfor %}
 
 {% endblock %}

@@ -7,8 +7,8 @@
     <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
     <title>Watch Party</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -16,7 +16,9 @@
         <nav>
             <div class=“nav-wrapper”>
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Home</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo">
+                        <img id="logo" src="../static/images/Logo.jpg" alt="logo">
+                    </a></li>
                 </ul>
                 <ul class="right">
                   <li><a href="{% url 'about' %}">About</a></li>

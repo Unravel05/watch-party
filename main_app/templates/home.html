@@ -5,11 +5,13 @@
 <p>All the movies and tv are gonna be here with the carrusel and search bar</p>
 
 <form action="{% url 'all_media' %}" method="get">
-    <div class="input-field">
-        <select class="browser-default" name="type">
-            <option value="movie">Movie</option>
-            <option value="tv">TV Show</option>
-        </select>
+    <div class="card-content">
+        <div class="input-field">
+            <select class="browser-default" name="type">
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+            </select>
+        </div>
     </div>
 
 

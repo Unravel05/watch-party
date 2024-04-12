@@ -6,14 +6,15 @@
     <meta name=“viewport” content=“width=device-width, initial-scale=1.0">
     <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
     <title>Watch Party</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="{% static 'scss/materialize.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
     <header class=“navbar-fixed”>
-        <nav>
+        <nav class="">
             <div class=“nav-wrapper”>
                 <ul>
                     <li><a href="{% url 'home' %}" class="left brand-logo">
@@ -25,7 +26,6 @@
                   <li><a href="{% url 'all_media' %}">All Media</a></li>
                   {% if user.is_authenticated %}
                     <li><a href="{% url 'party' %}">My Watch Party</a></li>
-                    <li><a href="{% url 'my_profile' %}">&nbsp;&nbsp;Profile</a></li>
                     <li>
                         <form action="{% url 'logout' %}" method="POST">
                             {% csrf_token %}

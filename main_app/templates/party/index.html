@@ -6,7 +6,7 @@
 {% for movie in movies %}
   
 <div class="col s4">
-  <div class="card brown darken-4">
+  <div class="card">
     <div class="card-content white-text">
       <a href="{% url 'movie_detail' movie.id %}">
           <span class="card-title">{{ movie.title }}</span>
@@ -25,7 +25,7 @@
 {% for show in shows %}
 
   <div class="col s4">
-    <div class="card brown darken-4">
+    <div class="card">
       <div class="card-content white-text">
         <a href="{% url 'show_detail' show.id %}">
             <span class="card-title">{{ show.title }}</span>

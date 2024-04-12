@@ -64,9 +64,6 @@ def party_index(request):
       'shows': shows
    })
 
-def my_profile(request):
-   return render(request, 'my_profile.html')
-
 # tv shows: view detail, save, detail page, add review, update, delete
 
 def view_show_detail(request, tv_id):

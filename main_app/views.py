@@ -20,7 +20,8 @@ headers = {
     "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmM0MzBhOThjNzRlYzllNDVjNjVlOTcyOTYyYWE3YiIsInN1YiI6IjY2MGVmYmY0YTg4NTg3MDE3Y2VhMjVlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eNL5Z05d61tQZ1TXUoccaKXxrm3_Nu5IIrme8q4So8Y"
 }
 
-# Create your views here.
+# Landing page functions
+
 def home(request):
    return render(request, 'home.html')
 
@@ -53,11 +54,7 @@ def view_trendings_results(request):
 def about(request):
    return render(request, 'about.html')
 
-# def shows_index(request):
-#    return render(request, 'all_tv_shows.html')
-
-def movies_index(request):
-   return render(request, 'all_movies.html')
+# watch party list:
 
 def party_index(request):
    movies = Movie.objects.all()
@@ -69,6 +66,19 @@ def party_index(request):
 
 def my_profile(request):
    return render(request, 'my_profile.html')
+
+# tv shows: view detail, save, detail page, add review, update, delete
+
+def view_show_detail(request, tv_id):
+    data = requests.get(f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={TMDB_API_KEY}&language=en-US")
+    recommendations = requests.get(f"https://api.themoviedb.org/3/tv/{tv_id}/recommendations?api_key={TMDB_API_KEY}&language=en-US")
+    print(data.json()['name'])
+    
+    return render(request, "shows/view_detail.html", {
+      "data": data.json(),
+      "recommendations": recommendations.json(),
+      "type": "tv",
+    })
 
 def save_tv_show(request, tv_id):
    movies = Movie.objects.all()
@@ -97,15 +107,21 @@ def save_tv_show(request, tv_id):
 def show_detail(request, show_id):
    show = Show.objects.get(id=show_id)
    review_form = ShowReviewForm()
+   
    return render(request, 'shows/detail.html', {
       'title': f'{show}',
       'show': show,
       'review_form': review_form
    })
 
-class MovieUpdate(UpdateView):
-  model = Movie
-  fields = ['progress']
+def add_show_review(request, show_id):
+   form = ShowReviewForm(request.POST)
+   if form.is_valid():
+      new_review = form.save(commit=False)
+      new_review.show_id = show_id
+      new_review.save()
+   
+   return redirect('show_detail', show_id=show_id)
 
 class ShowUpdate(UpdateView):
   model = Show
@@ -115,6 +131,18 @@ class ShowUpdate(UpdateView):
 class ShowDelete(LoginRequiredMixin, DeleteView):
   model = Show
   success_url = '/media/party'
+
+# movies: view detail, save, detail page, add review, update, delete
+
+def view_movie_detail(request, movie_id):
+    data = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US")
+    recommendations = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key={TMDB_API_KEY}&language=en-US")
+    
+    return render(request, "movies/view_detail.html", {
+        "data": data.json(),
+        "recommendations": recommendations.json(),
+        "type": "movie",
+    })
 
 def save_movie(request, movie_id):
    movies = Movie.objects.all()
@@ -143,15 +171,12 @@ def save_movie(request, movie_id):
 def movie_detail(request, movie_id):
    movie = Movie.objects.get(id=movie_id)
    review_form = MovieReviewForm()
+   
    return render(request, 'movies/detail.html', {
       'title': f'{movie}',
       'movie': movie,
       'review_form': review_form
    })
-
-class MovieDelete(LoginRequiredMixin, DeleteView):
-  model = Movie
-  success_url = '/media/party'
 
 def add_movie_review(request, movie_id):
    form = MovieReviewForm(request.POST)
@@ -161,29 +186,15 @@ def add_movie_review(request, movie_id):
       new_review.save()
    return redirect('movie_detail', movie_id=movie_id)
 
-def add_show_review(request, show_id):
-   form = ShowReviewForm(request.POST)
-   if form.is_valid():
-      new_review = form.save(commit=False)
-      new_review.show_id = show_id
-      new_review.save()
-   return redirect('show_detail', show_id=show_id)
+class MovieUpdate(UpdateView):
+  model = Movie
+  fields = ['progress']
 
-class MovieCreate(CreateView):
-    model = Movie
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+class MovieDelete(LoginRequiredMixin, DeleteView):
+  model = Movie
+  success_url = '/media/party'
     
-
-class ShowCreate(CreateView):
-    model = Show
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-    
+# user signup
 
 def signup(request):
   error_message = ''

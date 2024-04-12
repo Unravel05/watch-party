@@ -11,8 +11,6 @@ RATINGS = (
     ('5', '5')
 )
 
-# Create your models here.
-
 class Movie(models.Model):
     title = models.CharField(default='')
     genre = models.CharField(default='')

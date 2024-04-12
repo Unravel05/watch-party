@@ -36,22 +36,18 @@
 
 <hr>
 <h2>Recommendations</h2>
-<div class="row">
+<div class="row carousel">
     {% for m in recommendations.results %}
-        <div class="card" style="width: 18rem;">
+        <a class="card carousel-item" style="width: 18rem;" href="/{{ type }}/{{ m.id }}/">
             <img src="https://image.tmdb.org/t/p/w200{{ m.poster_path }}" class="card-img-top" alt="...">
-            <div class="card-body">
-            {% if not m.name %}
-                <h5 class="card-title">{{ m.title }}</h5>
-            {% else %}
-                <h5 class="card-title">{{ m.name }}</h5>
-            {% endif %}
-            <p class="card-text">{{ m.overview }}</p>
-            <a href="/{{ type }}/{{ m.id }}/" class="btn btn-primary">View Details</a>
-            </div>
-        </div>
+        </a>
     {% endfor %}
 </div>
 
+<script>  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems);
+  });</script>
 
 {% endblock %}
+

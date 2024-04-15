@@ -22,30 +22,38 @@
                 </div>
                 <div class="card-action">
                     <a href="/{{ type }}/{{ m.id }}/">View Details</a>
+                    {% if user.is_authenticated %}
                     <form action="/{{ type }}/{{ m.id }}/save" method="POST">
                         {% csrf_token %}
                         <button type="submit" class="btn">Save</button>
                     </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
     {% endfor %}
   </div>
 
-  <form action="{% url 'all_media' %}" method="get">
-    <div class="input-field">
-        <select class="browser-default" id="media_type" name="trending_type">
-        <option selected>All Trending Media Types</option>
-        <option value="movie">All Trending Movies</option>
-        <option value="tv">All Trending TV Shows</option>
-        </select>
+<div class="row center-align login-container">
+    <div class="col s6 offset-s3">
+        <div class="card">
+            <h2>Browse Trending Media</h2>
+            <form action="{% url 'all_media' %}" method="get"">
+                <div class="input-field">
+                    <select class="browser-default" id="media_type" name="trending_type">
+                    <option value="movie">All Trending Movies</option>
+                    <option value="tv">All Trending TV Shows</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary browser-default">Search</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Search</button>
-    </div>
-  </form>
+</div>
+        
 
-<h2>Trending</h2>
 <div class="carousel" id="trendings">
     {% for m in trendings.results %}
         <a class="carousel-item" style="width: 18rem;" href="/{{ trending_type }}/{{ m.id }}/">

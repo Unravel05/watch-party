@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+
 }
 
 main {
@@ -36,7 +37,6 @@ a {
 }
 
 .card-content {
-    margin-top: -6%;
     margin-bottom: 2%;
     font-size: 200%;
 }
@@ -66,21 +66,74 @@ a {
 
 h1 {
     margin-top: 2%;
-    margin-bottom: 8%;
+    margin-bottom: 4%;
+    text-align: center;
 }
 
-#home-page {
+div > .browser-default {
     width: 30%;
     text-align: center;
     align-items: center;
     display: block;
     margin: 0 auto;
 }
-#background {
-    size: 100%;
-    opacity: 0.2;
-}
+
 .welcome {
     text-align: center;
 }
 
+#search {
+    margin-top: 10%;
+}
+
+.carousel {
+    height: 600px;
+    margin-top: -50rem;
+}
+
+.background-image {
+    overflow: auto;
+    position: relative;
+}
+
+.background-image::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    display: block;
+    background-image: url("https://i.imgur.com/vXoBHFa.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.login-form {
+    width: 30%;
+    text-align: center;
+    align-items: center;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.login-container {
+    height: 100%;
+}
+
+.card {
+    padding: 2rem;
+    
+}
+
+#login-id {
+    padding: 8rem;
+}
+
+.card-image {
+    margin: auto;
+}

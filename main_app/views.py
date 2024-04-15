@@ -32,9 +32,16 @@ def search(request):
    if trending_query:
       trendings = requests.get(f"https://api.themoviedb.org/3/trending/{request.GET.get('trending_type')}/day?api_key={TMDB_API_KEY}&language=en-US")
    else:
-
+      data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
       trendings = requests.get(f"https://api.themoviedb.org/3/trending/movie/day?api_key={TMDB_API_KEY}&language=en-US")
       print(trendings)
+      return render(request, 'all_media.html', {
+      "data": data.json(),
+      "type": request.GET.get("type"),
+      "title": '',
+      "trendings": trendings.json(),
+      "trending_type": 'movie'
+      })
 
    if query:
 
@@ -42,7 +49,7 @@ def search(request):
       print(f'search {data.json()}')
    else:
       return render(request, 'all_media.html', {
-         'title': 'Available Media',
+         'title': '',
          "trendings": trendings.json(),
          "trending_type": request.GET.get("trending_type")
       })
@@ -60,6 +67,7 @@ def about(request):
 
 # watch party list:
 
+@login_required
 def party_index(request):
    movies = Movie.objects.all()
    shows = Show.objects.all()
@@ -81,6 +89,7 @@ def view_show_detail(request, tv_id):
       "type": "tv",
     })
 
+@login_required
 def save_tv_show(request, tv_id):
    movies = Movie.objects.all()
    shows = Show.objects.all()
@@ -105,6 +114,7 @@ def save_tv_show(request, tv_id):
       'type': 'tv'
    })
 
+@login_required
 def show_detail(request, show_id):
    show = Show.objects.get(id=show_id)
    review_form = ShowReviewForm()
@@ -115,6 +125,7 @@ def show_detail(request, show_id):
       'review_form': review_form
    })
 
+@login_required
 def add_show_review(request, show_id):
    form = ShowReviewForm(request.POST)
    if form.is_valid():
@@ -124,10 +135,10 @@ def add_show_review(request, show_id):
    
    return redirect('show_detail', show_id=show_id)
 
+
 class ShowUpdate(UpdateView):
   model = Show
   fields = ['progress']
-
 
 class ShowDelete(LoginRequiredMixin, DeleteView):
   model = Show
@@ -145,6 +156,7 @@ def view_movie_detail(request, movie_id):
         "type": "movie",
     })
 
+@login_required
 def save_movie(request, movie_id):
    movies = Movie.objects.all()
    shows = Show.objects.all()
@@ -169,6 +181,7 @@ def save_movie(request, movie_id):
       'type': 'movie'
    })
 
+@login_required
 def movie_detail(request, movie_id):
    movie = Movie.objects.get(id=movie_id)
    review_form = MovieReviewForm()
@@ -179,6 +192,7 @@ def movie_detail(request, movie_id):
       'review_form': review_form
    })
 
+@login_required
 def add_movie_review(request, movie_id):
    form = MovieReviewForm(request.POST)
    if form.is_valid():

@@ -24,10 +24,12 @@
                 <strong>Release date:</strong> {{ data.release_date }} <br>
                 <strong>Runtime: </strong> {{ data.runtime }} minutes <br>
             </p>
+            {% if user.is_authenticated %}
             <form action="/{{ type }}/{{ data.id }}/save" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn">Save</button>
-            </form>       
+            </form>  
+            {% endif %}     
         </div>
     </div>
 </div>
@@ -50,4 +52,3 @@
   });</script>
 
 {% endblock %}
-

@@ -3,33 +3,46 @@
 <div class="welcome">
     <br><br>
     <h1>Welcome! 🍿🎬</h1>
-    <br><br>
-    <p>Welcome to Watch Party, the ultimate destination for TV show and movie enthusiasts!</p>
-    <p>
-        Here, you can leave comments, ratings and track your progress watching all your favorite shows and films.
-        Join our community of fellow entertainment aficionados and never miss a beat of the latest and greatest
-        in television and cinema. So, grab your popcorn and join us in celebrating the magic of television and film!
-    </p>
-    
-    <form action="{% url 'all_media' %}" method="get">
-        <div class="card-content">
-            <div class="input-field">
-                <select class="browser-default" id="home-page" name="type">
-                    <option class="media" value="movie">Movie</option>
-                    <option class="media" value="tv">TV Show</option>
-                </select>
+
+    <div class="row center-align login-container" id="about">
+        <div class="col s8 offset-s2">
+            <div class="card horizontal blue-grey darken-1">
+                <p>Welcome to Watch Party, the ultimate destination for TV show and movie enthusiasts!
+                    <br>
+                    Here, you can leave comments, ratings and track your progress watching all your favorite shows and films.
+                    Join our community of fellow entertainment aficionados and never miss a beat of the latest and greatest
+                    in television and cinema. So, grab your popcorn and join us in celebrating the magic of television and film!
+                </p>
             </div>
         </div>
-        
-        
-        <div class="col-auto">
-            <input type="text" class="form-control" id="home-page" placeholder="Search Query" name="q">
+    </div>
+    
+    <div class="row center-align login-container">
+        <div class="col s6 offset-s3">
+            <div class="card">
+                <h3>Browse Our Database</h3>
+                <form action="{% url 'all_media' %}" method="get" id="search">
+                    <div class="card-content">
+                        <div class="input-field">
+                            <select class="browser-default" id="home-page" name="type">
+                                <option class="media" value="movie">Movie</option>
+                                <option class="media" value="tv">TV Show</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-auto">
+                        <input type="text" class="form-control browser-default" id="home-page" placeholder="Search Query" name="q">
+                    </div>
+                    
+                    <br>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-        <br>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

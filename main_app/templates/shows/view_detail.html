@@ -14,7 +14,6 @@
             <ul>
                 <h4>Networks:</h4> 
             {% for n in data.networks %}
-                <li>{{ n.name }}</li>
                 <img src="https://image.tmdb.org/t/p/w200/{{ n.logo_path }}" alt="...">
             {% endfor %}
             </ul>
@@ -37,10 +36,12 @@
                 <strong>Name: </strong> {{ data.last_episode_to_air.name }} <br>
                 <strong>Overview: </strong> {{ data.last_episode_to_air.overview }} <br>
             </p>
+            {% if user.is_authenticated %}
             <form action="/{{ type }}/{{ data.id }}/save" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn">Save</button>
             </form>       
+            {% endif %}
         </div>
     </div>
 </div>

@@ -4433,13 +4433,13 @@ small {
   padding: 24px;
   margin: 0.5rem 0 1rem 0;
   border-radius: 2px;
-  background-color: #ddb07f;
+  background-color: #8d6e63;
 }
 
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #ddb07f;
+  background-color: #8d6e63;
   transition: box-shadow 0.25s;
   border-radius: 2px;
 }
@@ -4528,7 +4528,7 @@ small {
   width: 100%;
 }
 .card .card-image .card-title {
-  color: #ddb07f;
+  color: #8d6e63;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -4571,7 +4571,7 @@ small {
 .card .card-reveal {
   padding: 24px;
   position: absolute;
-  background-color: #ddb07f;
+  background-color: #8d6e63;
   width: 100%;
   overflow-y: auto;
   left: 0;

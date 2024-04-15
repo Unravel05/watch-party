@@ -139,7 +139,7 @@ div > .browser-default {
 }
 
 #infor{
-    margin-top: -70%;
+    margin-top: -60%;
     font-size: 70%;
     margin-left: 45%;
     text-align: left;
@@ -147,7 +147,7 @@ div > .browser-default {
 }
 
 #infor-tv {
-    margin-top: -67%;
+    margin-top: -57%;
     font-size: 70%;
     margin-left: 45%;
     text-align: left;
@@ -161,11 +161,7 @@ div > .browser-default {
     font-weight: 500;
     font-stretch:expanded
 }
-.infortag {
-    font-size: 70%;
-    margin-right: 70%;
-    margin-bottom: 5%;
-}
+
 #tittle{
     font-size: medium;
 }

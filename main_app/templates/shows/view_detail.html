@@ -1,51 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="col s4">
-    <div class="card">
-        <div class="card-content white-text">
-            <span class="card-title">
-                {{ data.name }}
-            </span>
-            <i>~{{ data.tagline }}</i>
-            <div class="card-image" style="width: 18rem;">
-                <img src="https://image.tmdb.org/t/p/w200{{ data.poster_path }}" alt="...">
+<div class="container">
+    <div class="row">
+        <div class="col l6 s12">
+            <div class="card">
+                <div class="card-content white-text">
+                    <span class="card-title" id="infotit">
+                        {{ data.name }}
+                    </span>
+                    <div class="card-image" id="view_img" style="width: 18rem;">
+                        <img src="https://image.tmdb.org/t/p/w200{{ data.poster_path }}" alt="...">
+                    </div>
+                    <i class="infortag">~{{ data.tagline }}</i>
+                    <div class="right-align" id="infor">
+                        <ul>
+                            <h4>Networks:</h4> 
+                        {% for n in data.networks %}
+                            <img src="https://image.tmdb.org/t/p/w200/{{ n.logo_path }}" alt="...">
+                        {% endfor %}
+                        </ul>
+                        <ul>
+                            <h4>Genres:</h4>
+                            {% for g in data.genres %}
+                                <li>{{ g.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul>
+                            <h4>Languages:</h4>
+                            {% for l in data.languages %}
+                                <li>{{ l }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h4>Last episode as of today:</h4>
+                        <p>
+                            <strong>Air date:</strong> {{ data.last_episode_to_air.air_date }} <br>
+                            <strong>Episode number:</strong> {{ data.last_episode_to_air.episode_number }} <br>
+                            <strong>Name: </strong> {{ data.last_episode_to_air.name }} <br>
+                            <strong>Overview: </strong> {{ data.last_episode_to_air.overview }} <br>
+                        </p>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <form action="/{{ type }}/{{ data.id }}/save" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Save</button>
+                    </form>       
+                    {% endif %}
+                </div>
             </div>
-            <ul>
-                <h4>Networks:</h4> 
-            {% for n in data.networks %}
-                <img src="https://image.tmdb.org/t/p/w200/{{ n.logo_path }}" alt="...">
-            {% endfor %}
-            </ul>
-            <ul>
-                <h4>Genres:</h4>
-                {% for g in data.genres %}
-                    <li>{{ g.name }}</li>
-                {% endfor %}
-            </ul>
-            <ul>
-                <h4>Languages:</h4>
-                {% for l in data.languages %}
-                    <li>{{ l }}</li>
-                {% endfor %}
-            </ul>
-            <h4>Last episode as of today:</h4>
-            <p>
-                <strong>Air date:</strong> {{ data.last_episode_to_air.air_date }} <br>
-                <strong>Episode number:</strong> {{ data.last_episode_to_air.episode_number }} <br>
-                <strong>Name: </strong> {{ data.last_episode_to_air.name }} <br>
-                <strong>Overview: </strong> {{ data.last_episode_to_air.overview }} <br>
-            </p>
-            {% if user.is_authenticated %}
-            <form action="/{{ type }}/{{ data.id }}/save" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn">Save</button>
-            </form>       
-            {% endif %}
         </div>
     </div>
 </div>
-
 
 
 <hr>

@@ -1,41 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="col s4">
-    <div class="card">
-        <div class="card-content white-text">
-            <span class="card-title">
-                {{ data.title }}
-            </span>
-            <i>~{{ data.tagline }}</i>
-            <div class="card-image" style="width: 18rem;">
-                <img src="https://image.tmdb.org/t/p/w200{{ data.poster_path }}" alt="...">
-            </div>
-            <h4>Overview:</h4>
-            <p>{{ data.overview }}</p>
-            <ul>
-                <h4>Genres:</h4>
-                {% for g in data.genres %}
-                    <li>{{ g.name }}</li>
-                {% endfor %}
-            </ul>
-            <h4>General Information</h4>
-            <p>
-                <strong>Release date:</strong> {{ data.release_date }} <br>
-                <strong>Runtime: </strong> {{ data.runtime }} minutes <br>
-            </p>
-            {% if user.is_authenticated %}
-            <form action="/{{ type }}/{{ data.id }}/save" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn">Save</button>
-            </form>  
-            {% endif %}     
+<div class="container">
+    <div class="row">
+        <div class="col l6 s12">
+            <div class="card">
+                <div class="card-content white-text">
+                        <span class="card-title" id="infotit">
+                                {{ data.title }}
+                            </span>
+                            <div class="card-image"  id="view_img" style="width: 18rem;">
+                                <img src="https://image.tmdb.org/t/p/w200{{ data.poster_path }}" alt="...">
+                            </div>
+                            <i class="infortag">~{{ data.tagline }}</i>
+                        <div class="right-align" id="infor">
+                            <h4>Overview:</h4>
+                            <p>{{ data.overview }}</p>
+                            <ul>
+                            <h4>Genres:</h4>
+                            {% for g in data.genres %}
+                            <li>{{ g.name }}</li>
+                            {% endfor %}
+                            </ul>
+                            <h4>General Information</h4>
+                            <p>
+                            <strong>Release date:</strong> {{ data.release_date }} <br>
+                            <strong>Runtime: </strong> {{ data.runtime }} minutes <br>
+                            </p>
+                        </div>
+                    <form action="/{{ type }}/{{ data.id }}/save" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-
-
 <hr>
 <h2>Recommendations</h2>
 <div class="row carousel">
@@ -45,10 +44,20 @@
         </a>
     {% endfor %}
 </div>
-
 <script>  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.carousel');
     var instances = M.Carousel.init(elems);
   });</script>
-
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

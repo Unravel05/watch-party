@@ -137,3 +137,30 @@ div > .browser-default {
 .card-image {
     margin: auto;
 }
+
+#infor{
+    margin-top: -77%;
+    font-size: 70%;
+    margin-left: 45%;
+    text-align: left;
+    text-align: justify;
+}
+#infotit{
+    margin-bottom: 4%;
+    text-align: center;
+    font-size: larger;
+    font-weight: 500;
+    font-stretch:expanded
+}
+.infortag {
+    font-size: 70%;
+    margin-right: 70%;
+    margin-bottom: 5%;
+}
+#tittle{
+    font-size: medium;
+}
+
+#view_img {
+    margin-right: 75%;
+}

@@ -26,30 +26,34 @@ def home(request):
    return render(request, 'home.html')
 
 def search(request):
-    query = request.GET.get('q')
-    print(query)
+   query = request.GET.get('q')
+   trending_query = request.GET.get('trending_type')
 
-    if query:
+   if trending_query:
+      trendings = requests.get(f"https://api.themoviedb.org/3/trending/{request.GET.get('trending_type')}/day?api_key={TMDB_API_KEY}&language=en-US")
+   else:
 
-        data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
-        print(f'search {data.json()}')
-    else:
-        return render(request, 'all_media.html', {
-           'title': 'Available Media'
-        })
+      trendings = requests.get(f"https://api.themoviedb.org/3/trending/movie/day?api_key={TMDB_API_KEY}&language=en-US")
+      print(trendings)
 
-    return render(request, 'all_media.html', {
-        "data": data.json(),
-        "type": request.GET.get("type"),
-        "title": f'Results for {query}'
-    })
+   if query:
 
-def view_trendings_results(request):
-    type = request.GET.get("media_type")
-    time_window = request.GET.get("time_window")
+      data = requests.get(f"https://api.themoviedb.org/3/search/{request.GET.get('type')}?query={query}&include_adult=false&language=en-US&page=1", headers=headers)
+      print(f'search {data.json()}')
+   else:
+      return render(request, 'all_media.html', {
+         'title': 'Available Media',
+         "trendings": trendings.json(),
+         "trending_type": request.GET.get("trending_type")
+      })
 
-    trendings = requests.get(f"https://api.themoviedb.org/3/trending/{type}/{time_window}?api_key={TMDB_API_KEY}&language=en-US")
-    return JsonResponse(trendings.json())
+   return render(request, 'all_media.html', {
+      "data": data.json(),
+      "type": request.GET.get("type"),
+      "title": f'Results for {query}',
+      "trendings": trendings.json(),
+      "trending_type": request.GET.get("trending_type")
+      })
 
 def about(request):
    return render(request, 'about.html')

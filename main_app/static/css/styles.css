@@ -139,12 +139,21 @@ div > .browser-default {
 }
 
 #infor{
-    margin-top: -77%;
+    margin-top: -70%;
     font-size: 70%;
     margin-left: 45%;
     text-align: left;
     text-align: justify;
 }
+
+#infor-tv {
+    margin-top: -67%;
+    font-size: 70%;
+    margin-left: 45%;
+    text-align: left;
+    text-align: justify;
+}
+
 #infotit{
     margin-bottom: 4%;
     text-align: center;

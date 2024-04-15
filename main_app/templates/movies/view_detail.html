@@ -9,7 +9,11 @@
                                 {{ data.title }}
                             </span>
                             <div class="card-image"  id="view_img" style="width: 18rem;">
+                                {% if not data.poster_path %}
+                                <img src="https://image.tmdb.org/t/p/w200/vkcajIqORuKfd8uV2GYULlHut9o.jpg" alt="">
+                                {% else %}
                                 <img src="https://image.tmdb.org/t/p/w200{{ data.poster_path }}" alt="...">
+                                {% endif %}
                             </div>
                             <i class="infortag">~{{ data.tagline }}</i>
                         <div class="right-align" id="infor">

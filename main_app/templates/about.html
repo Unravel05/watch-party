@@ -1,18 +1,99 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>About</h1>
-<h2>The girls</h2>
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="https://i.imgur.com/uv7WBxB.jpeg" id="girls">
+        <div class="centered">The girls</div>
+    </div>
+</div>
 
-<p>Natalia Parra | Rol</p>
-<p>etcetcet</p>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems);
+    });
+</script>
 
-<p>Holly Bieber | Rol</p>
-<p>etcetcetc</p>
+<div class="container">
+    <div class="section">
 
-<p>Daniela Godoy | Rol</p>
-<p>etcetcet</p>
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card center z-depth-5">
+                    <div class="icon-block">
+                        <div class="card-image z-depth-5">
+                            <img src="https://avatars.githubusercontent.com/u/98720824?v=4">
+                            <h5 class="center brown-text-bold"><i class="material-icons">Holly Bieber</i></h5>
+                            <h6 class="center white-text">API/Github Manager</h6>
+                            <div class="card-content ">
+                                <p id="intro">I am a curious and diligent software engineer with a lifelong obsession for learning and a background in client facing service. With my background as a fitness and nutrition coach, I have cultivated empathetic relationship management and data driven problem solving skills. Relentlessly dedicated to improving the human experience, I aim to channel my logic and emotional intelligence into developing software that provides creative, elegant, and accessible solutions.</p>
+                                <a class="btn-floating center waves-effect waves-light white z-depth-3"
+                                    href="https://www.linkedin.com/in/holly-bieber/" id="github">
+                                    <img src="https://cdn.icon-icons.com/icons2/2428/PNG/512/linkedin_black_logo_icon_147114.png"
+                                        alt="">
+                                </a>
+                                <a class="btn-floating center waves-effect waves-light white z-depth-3"
+                                    href="https://github.com/habieber" id="github">
+                                    <img src="https://seeklogo.com/images/G/github-logo-7880D80B8D-seeklogo.com.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<p>Hire the girls</p>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card center z-depth-5">
+                        <div class="icon-block">
+                            <div class="card-image z-depth-5">
+                                <img src="https://i.imgur.com/IU62k0N.jpeg">
+                                <h5 class="center brown-text-bold"><i class="material-icons">Natalia A. Parra Parra</i></h5>
+                                <h6 class="center white-text">CSS/Trello Manager</h6>
+                                <div class="card-content ">
+                                    <p id="intro">Hello! I am Natalia, a Software Engineer with proven track record problem-solving abilities. Skilled in multilingual communication (English/Spanish), well-versed in diverse remote work tools and effective multitasking.!</p>
+                                    <a class="btn-floating center waves-effect waves-light white z-depth-3"
+                                        href="https://www.linkedin.com/in/nataliaparraparra/" id="github">
+                                        <img src="https://cdn.icon-icons.com/icons2/2428/PNG/512/linkedin_black_logo_icon_147114.png"
+                                            alt="">
+                                    </a>
+                                    <a class="btn-floating center waves-effect waves-light white z-depth-3"
+                                        href="https://github.com/Unravel05" id="github">
+                                        <img src="https://seeklogo.com/images/G/github-logo-7880D80B8D-seeklogo.com.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="card center z-depth-5">
+                            <div class="icon-block">
+                                <div class="card-image z-depth-5" id="dani">
+                                    <img src="https://files.slack.com/files-tmb/T0351JZQ0-F06U8HE3J7P-7cba7de430/img_1121_720.png">
+                                    <h5 class="center brown-text-bold"><i class="material-icons">Daniela Godoy</i></h5>
+                                    <h6 class="center white-text">Data Manager</h6>
+                                    <div class="card-content ">
+                                        <p id="intro">I am a hard-working, passionate, and driven software engineer with great problem-solving skills. My previous experience working in customer service has taught me great social skills, working with people, patience and adaptability.</p>
+                                        <a class="btn-floating center waves-effect waves-light white z-depth-3"
+                                            href="https://www.linkedin.com/in/danielagodoytocora/" id="github">
+                                            <img src="https://cdn.icon-icons.com/icons2/2428/PNG/512/linkedin_black_logo_icon_147114.png"
+                                                alt="">
+                                        </a>
+                                        <a class="btn-floating center waves-effect waves-light white z-depth-3"
+                                            href="https://github.com/dgdytcr" id="github">
+                                            <img src="https://seeklogo.com/images/G/github-logo-7880D80B8D-seeklogo.com.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+</div>
 
 {% endblock %}

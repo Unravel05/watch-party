@@ -1,27 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1>Home</h1>
-<p>All the movies and tv are gonna be here with the carrusel and search bar</p>
-
-<form action="{% url 'all_media' %}" method="get">
-    <div class="card-content">
-        <div class="input-field">
-            <select class="browser-default" name="type">
-                <option value="movie">Movie</option>
-                <option value="tv">TV Show</option>
-            </select>
+<div class="welcome">
+    <br><br>
+    <h1>Welcome! 🍿🎬</h1>
+    <br><br>
+    <p>Welcome to Watch Party, the ultimate destination for TV show and movie enthusiasts!</p>
+    <p>
+        Here, you can leave comments, ratings and track your progress watching all your favorite shows and films.
+        Join our community of fellow entertainment aficionados and never miss a beat of the latest and greatest
+        in television and cinema. So, grab your popcorn and join us in celebrating the magic of television and film!
+    </p>
+    
+    <form action="{% url 'all_media' %}" method="get">
+        <div class="card-content">
+            <div class="input-field">
+                <select class="browser-default" id="home-page" name="type">
+                    <option class="media" value="movie">Movie</option>
+                    <option class="media" value="tv">TV Show</option>
+                </select>
+            </div>
         </div>
-    </div>
-
-
-    <div class="col-auto">
-        <input type="text" class="form-control" placeholder="Search Query" name="q">
-    </div>
-
-    <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Search</button>
-    </div>
-</form>
-
+        
+        
+        <div class="col-auto">
+            <input type="text" class="form-control" id="home-page" placeholder="Search Query" name="q">
+        </div>
+        
+        <br>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

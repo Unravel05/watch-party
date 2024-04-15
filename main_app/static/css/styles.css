@@ -12,6 +12,10 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+  
+.left{
+    margin-top: 0.6%;
+}
 
 #logo {
     mix-blend-mode: multiply;
@@ -20,4 +24,66 @@ footer.page-footer {
 
 a {
     color: white;
+    font-family: "Protest Strike", sans-serif;
 }
+
+.right{
+    font-size: 200%;
+}
+
+.girls {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.card-content {
+    margin-top: -6%;
+    margin-bottom: 2%;
+}
+
+#github{
+    margin-top: 5%;
+}
+
+.container{
+    margin-top: 3%;
+}
+
+.parallax-container {
+    position: relative;
+    text-align: center;
+    color: aliceblue;
+  }
+
+.centered {
+    position: absolute;
+    font-size: 170%;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Send Flowers", cursive;
+  }
+
+h1{
+    margin-top: 2%;
+    margin-bottom: 8%;
+  }
+
+.card-content{
+    font-size: 200%;
+  }
+
+#home-page {
+    width: 30%;
+    text-align: center;
+    align-items: center;
+    display: block;
+    margin: 0 auto;
+}
+#background {
+    size: 100%;
+    opacity: 0.2;
+}
+.welcome {
+    text-align: center;
+}
+

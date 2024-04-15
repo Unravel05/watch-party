@@ -6,7 +6,7 @@
 <div class="row">
     {% for m in data.results %}
         <div class="col s4">
-            <div class="card blue-grey darken-1">
+            <div class="card hoverable">
                 <div class="card-content white-text">
                     <span class="card-title">
                         {% if not m.name %}
@@ -16,9 +16,13 @@
                         {% endif %}
                     </span>
                     <div class="card-image">
-                        <img src="https://image.tmdb.org/t/p/w200{{ m.poster_path }}" alt="...">
+                        {% if not m.poster_path %}
+                        <img src="https://image.tmdb.org/t/p/w200/mI2LuUls15AfFktdCYRNS4LGMfz.jpg" alt="">
+                        {% else %}
+                        <img src="https://image.tmdb.org/t/p/w200{{ m.poster_path }}">
+                        {% endif %}
                     </div>
-                    <p>{{ m.overview }}</p>
+                    <p class="truncate" >{{ m.overview }}</p>
                 </div>
                 <div class="card-action">
                     <a href="/{{ type }}/{{ m.id }}/">View Details</a>

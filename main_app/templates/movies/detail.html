@@ -6,9 +6,6 @@
 <div class="col s4">
     <div class="card">
         <div class="card-content white-text">
-            <span class="card-title">
-                    {{ movie.title }}
-            </span>
             <div class="card-image" style="width: 18rem;">
                 <img src="https://image.tmdb.org/t/p/w200{{ movie.poster }}" alt="...">
             </div>
@@ -19,7 +16,6 @@
                     <p>Reviews: {{ r.date }} | {{ r.review }}</p>
                     <p>Rating: {{ r.rating }}</p>
                 {% endfor %}
-            
         </div>
         <div class="card_action">
             <a href="{% url 'movies_delete' movie.id %}" class="btn">Delete</a>

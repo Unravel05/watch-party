@@ -15,7 +15,7 @@ class Movie(models.Model):
     title = models.CharField(default='')
     genre = models.CharField(default='')
     description = models.TextField(default='')
-    poster = models.CharField(default='')
+    poster = models.CharField(default='/vkcajIqORuKfd8uV2GYULlHut9o.jpg')
     progress = models.CharField(default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -30,7 +30,7 @@ class Show(models.Model):
     genre = models.CharField(default='')
     season = models.CharField(default='')
     description = models.TextField(default='')
-    poster = models.CharField(default='')
+    poster = models.CharField(default='/mI2LuUls15AfFktdCYRNS4LGMfz.jpg')
     progress = models.CharField(default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

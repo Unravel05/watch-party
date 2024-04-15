@@ -6,7 +6,8 @@
     <meta name=“viewport” content=“width=device-width, initial-scale=1.0">
     <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
     <title>Watch Party</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Protest+Strike&family=Send+Flowers&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'scss/materialize.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
@@ -29,7 +30,7 @@
                     <li>
                         <form action="{% url 'logout' %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn">Logout</button>
+                            <button type="submit" class="btn brown-text">Logout</button>
                         </form>
                     </li>
                   {% else %}

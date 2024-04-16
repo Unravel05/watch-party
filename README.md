@@ -5,8 +5,9 @@ Here you can leave comments, ratings, and track your progress watching all your 
 
 # Screenshot
 
-<img src="url to your image on imgur">
-<img src="url to your image on imgur">
+<img src="Welcome.png">
+<img src="AllMedia.png">
+<img src="MyWatchParty.png">
 
 # Technologies Used
 
@@ -19,10 +20,14 @@ Here you can leave comments, ratings, and track your progress watching all your 
 - Lookadesign
 - Canva
 - Lucid
+- Materialize
+- TMDB API
+- Heroku
 
 # Getting Started
 
-[Click to go to Watch Party!](your deployment url here)
+- https://trello.com/b/ARPUHYlD/project-3
+- https://watchparty3-36c2051c0790.herokuapp.com/
 
 # Next Steps
 
@@ -30,3 +35,4 @@ Here you can leave comments, ratings, and track your progress watching all your 
 - Share Watch Party on social media
 - Have a favorite feature
 - Make progress a percentage
+- Filters
